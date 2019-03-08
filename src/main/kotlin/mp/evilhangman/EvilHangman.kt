@@ -8,6 +8,13 @@ class EvilHangman {
     var eligibleWords = Dictionary.wordMap[actualWordLength]
     val actualWord = eligibleWords!!.random()
 
+    init {
+        println("Generating new Hangman Game")
+        println("Actual word length: $actualWordLength")
+        println("Actual word: $actualWord")
+        println("Eligible words: $eligibleWords")
+    }
+
     fun guess(c: Char) {
 
         fun generateWordFamilies(): List<List<String>> {
