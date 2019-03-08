@@ -1,8 +1,8 @@
 package mp.evilhangman
 
 fun main() {
-    val dictionary = Dictionary()
-    println(dictionary.actualWordLength)
-    println(dictionary.actualWord)
-    println(dictionary.eligibleWords)
+    val evilHangman = EvilHangman()
+    println(evilHangman.actualWordLength)
+    println(evilHangman.actualWord)
+    println(evilHangman.eligibleWords)
 }
