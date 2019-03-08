@@ -15,6 +15,15 @@ class Dictionary {
     val actualWord = eligibleWords!!.random()
 
     fun guess(c: Char) {
+
+        fun generateWordFamilies(): List<List<String>> {
+            return listOf()
+        }
+
+        fun selectWordFamily(): List<String> {
+            return listOf()
+        }
+
         if (c in guessedChars) {
             println("Character already guessed earlier.")
         } else {
