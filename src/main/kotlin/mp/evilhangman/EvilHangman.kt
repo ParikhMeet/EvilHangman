@@ -1,6 +1,12 @@
 package mp.evilhangman
 
 data class Family(var position: Set<Int>, var words: List<String>)
+data class Status(
+    val count: Int = 0,
+    val guessedChars: Set<Char> = mutableSetOf(),
+    val currentWordAppearance: String,
+    val winner: Boolean = false
+)
 
 class EvilHangman {
 
@@ -13,6 +19,20 @@ class EvilHangman {
         println("Generating new Hangman Game")
         println("Actual word length: $actualWordLength")
         println("Eligible words: $eligibleWords")
+    }
+
+    private fun mask(): String {
+        return eligibleWords!![0]!!.map {
+            if (guessedChars.contains(it)) {
+                it
+            } else {
+                '_'
+            }
+        }.toString()
+    }
+
+    fun newGame(): Status {
+        return Status(currentWordAppearance = mask())
     }
 
     private fun getAllPositions(c: Char, word: String): Set<Int> {
