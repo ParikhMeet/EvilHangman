@@ -28,9 +28,7 @@ class EvilHangman {
         return positions
     }
 
-    private fun selectWordFamily(families: List<Family>): Family {
-        return families.maxBy { it.words.size }!!
-    }
+    private fun selectWordFamily(families: List<Family>): Family = families.maxBy { it.words.size }!!
 
     fun guess(c: Char) {
 
