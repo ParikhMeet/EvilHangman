@@ -22,13 +22,13 @@ class EvilHangman {
     }
 
     private fun mask(): String {
-        return eligibleWords!![0]!!.map {
+        return eligibleWords!![0].map {
             if (guessedChars.contains(it)) {
                 it
             } else {
                 '_'
             }
-        }.toString()
+        }.joinToString("")
     }
 
     fun newGame(): Status {
