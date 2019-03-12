@@ -14,6 +14,7 @@ class EvilHangman {
     var guessedChars = mutableSetOf<Char>()
     val actualWordLength = Dictionary.wordMap.keys.random()
     var eligibleWords = Dictionary.wordMap[actualWordLength]
+    val maskedChar = '_'
 
     init {
         println("Generating new Hangman Game")
@@ -26,7 +27,7 @@ class EvilHangman {
             if (guessedChars.contains(it)) {
                 it
             } else {
-                '_'
+                maskedChar
             }
         }.joinToString("")
     }
@@ -48,10 +49,20 @@ class EvilHangman {
         return positions
     }
 
+    private fun prepareStatus(): Status {
+        val maskedWord = mask()
+        return Status(
+            count = guessCount,
+            guessedChars = guessedChars,
+            currentWordAppearance = maskedWord,
+            winner = !maskedWord.contains(maskedChar)
+        )
+    }
+
     private fun selectWordFamily(families: List<Family>): Family = families.maxBy { it.words.size }!!
 
-    fun guess(c: Char) {
-
+    fun guess(c: Char): Status {
+        println("Guessing $c")
         fun generateWordFamilies(): List<Family> {
             val families = mutableListOf<Family>()
 
@@ -91,5 +102,6 @@ class EvilHangman {
 
             //winner if actualWord is the guessedWord
         }
+        return prepareStatus()
     }
 }
